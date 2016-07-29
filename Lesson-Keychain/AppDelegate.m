@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "FirstViewController.h"
+#import "SecondViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +18,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UINavigationController *firstNav = [[UINavigationController alloc]initWithRootViewController:[[FirstViewController alloc]init]];
+    UITabBarItem *item = [[UITabBarItem alloc]initWithTitle:@"苹果自带" image:nil tag:1000];
+    firstNav.tabBarItem = item;
+    
+    
+    UINavigationController *secondNav = [[UINavigationController alloc]initWithRootViewController:[[SecondViewController alloc]init]];
+    item = [[UITabBarItem alloc]initWithTitle:@"第三方" image:nil tag:1001];
+    secondNav.tabBarItem = item;
+    
+    
+    UITabBarController *tabVc = [[UITabBarController alloc]init];
+    tabVc.viewControllers = @[firstNav,secondNav];
+
+    self.window.rootViewController = tabVc;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
